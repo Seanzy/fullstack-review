@@ -26,3 +26,10 @@
     "request": "^2.81.0"
   }
 }
+
+//global packages wont show up in dependencies
+//this is created by npm. go through this first. 
+//npm install --save adds it to this and --save-dev 
+//lines 7 and 8 sets up webpack and turns on watch, put it in a separate window
+//line 8 tells nodemon to run. To run script type npm run scriptname 
+

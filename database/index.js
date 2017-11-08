@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // mongoose is a module for mongodb, it allows us to talk to mongoDb
 mongoose.connect('mongodb://localhost/fetcher');
 
-let repoSchema = mongoose.Schema({
+let repoSchema = mongoose.Schema({ // using mongoose to create a schema
   // TODO: your schema here!
 });
 
