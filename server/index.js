@@ -1,11 +1,25 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 let app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/../client/dist')); //serves up static files, looks in dist folder, looking for an index file and serves it first
 
 
 //middleware takes the request and does something to it, then it continues it down the chain of things to do, until we tell express we're done with the middleware. 
+
+// app.get('/', function(req, res) {
+//   console.log('sean');
+// });
+
 app.post('/repos', function (req, res) {
+  // console.log(req);
+  
+  
+  console.log('req data', req.body);
+  
+  res.end('zgot here');
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
@@ -21,6 +35,7 @@ let port = 1128;
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
+  // console.log('1: Sean was here');
 });
 
 //our functions will serve as controllers that go to the github api and brings it back 
