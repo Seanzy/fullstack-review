@@ -18,10 +18,10 @@ class App extends React.Component {
     $.ajax({
       method: "POST",
       url: "/repos",
-      data: {data: term}
+      data: {data: term} // has to go in as a data object
     })
   .done(function(res) {
-    alert( "Data Saved: " + res );
+    console.log( "Data Saved: " + res );
   });
      
   }

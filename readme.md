@@ -1,4 +1,4 @@
-A Hack Reactor project, by Sean Gurson.
+A Hack Reactor project, by Sean Gurson 11/8/17. 
 
 //global packages wont show up in dependencies
 //this is created by npm. go through this first. 
@@ -8,8 +8,9 @@ A Hack Reactor project, by Sean Gurson.
 
 What I learned:
 
-You need to bind 'this' of react components to their proper context (the best place to do this in the body of the Super class/ constructor, Search in this project).
+You need to bind 'this' of react components to their proper context (the best place to do this is in the body of the Super class/ constructor, Search in this project).
 
-To send an AJAX post, the AJAX object should include a data property. The data property will be ab object with a data property whose value is the data you wish to pass (in this case, the parameter term, which is a string). 
+To send an AJAX post, the AJAX object should include a data property. The data property will be an object with a data property whose value is the data you wish to pass (in this case, the parameter term, which is a string). data: {data: term}
+https://www.npmjs.com/package/body-parser
 
 
