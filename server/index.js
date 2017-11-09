@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helpers = require('../helpers/github.js');
+const save = require('../database/index.js')
 // const config = require('../config.js');
 
 //import helpers/github.js?
@@ -21,8 +22,13 @@ app.post('/repos', function (req, res) {
   // console.log(req);
   
   
-  helpers.getReposByUsername(req.body.data);
+  helpers.getReposByUsername(req.body.data, function(githubObject) {
+    save(githubObject);
+  });
   console.log('req data', req.body);
+  //cant run save here because they're async
+  
+  //save()
   
   res.end('got here');
   
@@ -35,7 +41,7 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
+  
   // This route should send back the top 25 repos
 });
 
