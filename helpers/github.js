@@ -1,8 +1,8 @@
 const request = require('request');
 const config = require('../config.js');
-var https = require('https');
+const db = require('../database'); //require defaults to looking for index.js
 
-let getReposByUsername = (username) => {
+let getReposByUsername = (username, callback) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
   
@@ -24,6 +24,7 @@ let getReposByUsername = (username) => {
       console.error(err, null);
     } else {
       console.log(null, githubObject.body);
+      callback(githubObject);
     }
   });
 
