@@ -7,6 +7,8 @@ let repoSchema = mongoose.Schema({ // using mongoose to create a schema
   name: String, 
   owner: String,
   description: String,
+  avatar_url: String,
+  html_url: String,
   
 });
 
@@ -24,6 +26,8 @@ let save = (githubObject) => { //githubObject is an array of objects
     repoObj.name = parsedRepos[i].name;
     repoObj.owner = parsedRepos[i].owner.login;
     repoObj.description = parsedRepos[i].description;
+    repoObj.avatar_url = parsedRepos[i].avatar_url;
+    repoObj.html_url = parsedRepos[i].html_url;
     
     var repo = new Repo(repoObj); //new document
     

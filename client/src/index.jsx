@@ -18,24 +18,15 @@ class App extends React.Component {
     console.log('got herehhhh');
     $.get("/repos", function(reposArray) {
 
-      // this.setState({
-      //   repos: 1,  
-      // })
       // console.log('77777777', reposArray);
     })
     .done(reposArray => {
       this.setState({
         repos: reposArray,
-      });
+      });// 
     });  
     
   }
-  // onChange (e) {
-  //   console.log('***************REPO LIST DETECTING CHANGES*********************');
-  //   this.setState({
-  //     repos: e.target
-  //   })
-  // }
 
   search (term) {
     console.log(`${term} was searched`);
@@ -60,3 +51,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
