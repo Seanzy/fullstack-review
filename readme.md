@@ -1,10 +1,13 @@
 A Hack Reactor project, by Sean Gurson 11/8/17. 
 
-//global packages wont show up in dependencies
-//this is created by npm. go through this first. 
-//npm install --save adds it to this and --save-dev 
-//lines 7 and 8 sets up webpack and turns on watch, put it in a separate window
-//line 8 tells nodemon to run. To run script type npm run scriptname 
+Setup
+
+npm install --save adds it to this and --save-dev 
+npm install -g webpack
+create a copy of the config.example.js file called config.js and make sure it contains a valid github api token
+npm run react-dev
+npm run server-dev
+
 
 What I learned:
 
@@ -14,3 +17,26 @@ To send an AJAX post, the AJAX object should include a data property. The data p
 https://www.npmjs.com/package/body-parser
 
 
+Mongodb
+
+mongodb gets saved to /data/db (use cd /data from Command line)
+
+for CLI: type mongo 
+
+
+> show dbs
+admin    0.000GB
+fetcher  0.000GB
+local    0.000GB
+
+> use fetcher
+switched to db fetcher
+
+> show collections
+repos
+
+db.repos.find (repos is your collection)
+
+> db.repos.remove({}) to remove all documents
+
+> db.repos.remove({})

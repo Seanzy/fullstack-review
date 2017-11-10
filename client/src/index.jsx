@@ -6,12 +6,36 @@ import RepoList from './components/RepoList.jsx';
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props); //call super(props first in the constructor, otherwise 'this' will be undefined)
     this.state = { 
-      repos: []
+      repos: [],
     }
-
+    
+    // this.search = this.search.bind(this);
   }
+  
+  componentDidMount() {
+    console.log('got herehhhh');
+    $.get("/repos", function(reposArray) {
+
+      // this.setState({
+      //   repos: 1,  
+      // })
+      // console.log('77777777', reposArray);
+    })
+    .done(reposArray => {
+      this.setState({
+        repos: reposArray,
+      });
+    });  
+    
+  }
+  // onChange (e) {
+  //   console.log('***************REPO LIST DETECTING CHANGES*********************');
+  //   this.setState({
+  //     repos: e.target
+  //   })
+  // }
 
   search (term) {
     console.log(`${term} was searched`);

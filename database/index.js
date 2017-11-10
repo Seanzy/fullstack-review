@@ -8,35 +8,57 @@ let repoSchema = mongoose.Schema({ // using mongoose to create a schema
   owner: String,
   description: String,
   
-  
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (githubObject) => { //githubObject is an array of objects 
   
-  // for (var repoObj in githubObject) {
-  //   var repo = new Repo(repoObj);
+  var repoArray = [];
+  var parsedRepos = JSON.parse(githubObject.body); //array of repo objects
+  
+  for (var i = 0; i < parsedRepos.length; i++) {
+    var repoObj = {};
     
-  //   repo.save()
-  // }
+    repoObj.id = parsedRepos[i].id; 
+    repoObj.name = parsedRepos[i].name;
+    repoObj.owner = parsedRepos[i].owner.login;
+    repoObj.description = parsedRepos[i].description;
+    
+    var repo = new Repo(repoObj); //new document
+    
+    repo.save(function (err) {
+      if (err) {
+        console.log(err); 
+      } else {
+        //saved
+      }
+    })
+    
+    repoArray.push(repoObj);
+  }
+    
+  console.log('bbbbbbbbb', repoArray);
   
+}
+
+var repoFinder = function(callback) { //needs to take in a callback 
+  Repo.find(function(err, repos) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('*******', repos);
+      callback(repos);
+    }
+  }).
+  // .sort({'name: -1'})
+  limit(25).
+  sort({'name': 1});
   
-  
+// var initialize
   
 }
 
 module.exports.save = save;
+module.exports.repoFinder = repoFinder; //export a function to encapsulate the get-25-repo logic
 
-//to see the structure of the githubObject, go to https://api.github.com/users/seanzy/repos
-
-// app.post("/addname", (req, res) => {
-//  var myData = new User(req.body);
-//  myData.save()
-//  .then(item => {
-//  res.send("item saved to database");
-//  })
-//  .catch(err => {
-//  res.status(400).send("unable to save to database");
-//  });
-// });

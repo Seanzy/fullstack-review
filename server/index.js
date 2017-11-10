@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helpers = require('../helpers/github.js');
-const save = require('../database/index.js')
-// const config = require('../config.js');
+const Save = require('../database/index.js')
 
 //import helpers/github.js?
 
@@ -18,12 +17,15 @@ app.use(express.static(__dirname + '/../client/dist')); //serves up static files
 //   console.log('sean');
 // });
 
+// app.get('/', function(req, res) {
+    
+// })
+
 app.post('/repos', function (req, res) {
   // console.log(req);
   
-  
   helpers.getReposByUsername(req.body.data, function(githubObject) {
-    save(githubObject);
+    Save.save(githubObject);
   });
   console.log('req data', req.body);
   //cant run save here because they're async
@@ -31,8 +33,6 @@ app.post('/repos', function (req, res) {
   //save()
   
   res.end('got here');
-  
-  
   
   // TODO - your code here!
   // This route should take the github username provided
@@ -42,7 +42,11 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   
-  // This route should send back the top 25 repos
+  Save.repoFinder(function(repos) {
+    res.json(repos);
+  });
+  // res.end(); // this runs immediately after line 44 if we don't pass in a callback and utilize it in repoFinder()
+  
 });
 
 let port = 1128;
@@ -54,3 +58,7 @@ app.listen(port, function() {
 
 //our functions will serve as controllers that go to the github api and brings it back 
 //make sure webpack and nodemon are available to run
+
+
+
+
