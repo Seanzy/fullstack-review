@@ -15,7 +15,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    console.log('got herehhhh');
+    console.log('got here');
     $.get("/repos", function(reposArray) {
 
       // console.log('77777777', reposArray);
